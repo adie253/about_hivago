@@ -12,8 +12,18 @@ const hivagoData = [
   { name: 'Your Earning', value: 950, color: '#10b981' },
 ];
 
-// Helper to render the label outside the pie slice
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, value, index }) => {
+interface LabelProps {
+  cx?: number;
+  cy?: number;
+  midAngle?: number;
+  innerRadius?: number;
+  outerRadius?: number;
+  value?: number;
+  index?: number;
+}
+
+const renderCustomizedLabel = (props: LabelProps) => {
+  const { cx = 0, cy = 0, midAngle = 0, outerRadius = 0, value = 0 } = props;
   const RADIAN = Math.PI / 180;
   const radius = outerRadius + 20;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
