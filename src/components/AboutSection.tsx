@@ -2,60 +2,122 @@ import React from 'react';
 
 const AboutSection: React.FC = () => {
   return (
-    <section className="section-padding bg-bg-primary" id="about">
+    <section className="section-padding about-section-enhanced" id="about">
       <div className="container">
-        <div className="mission-content">
-          <div className="quote-mark">"</div>
-          <h2 className="heading-xl text-center quote-text mb-6">
-            A more sustainable way forward
-          </h2>
-          <p className="text-lg text-muted text-center max-w-2xl mx-auto">
-            HIVAGO isn't just another platform. We are a community of restaurant owners, tech innovators, and food lovers committed to bringing fairness back to the delivery ecosystem. When you win, we win.
-          </p>
-          <p className="text-center mt-6 font-bold" style={{ color: 'var(--text-main)' }}>
-            — A restaurant partner
-          </p>
+        <div className="about-grid">
+          <div className="about-visual">
+            <div className="quote-mark">"</div>
+            <h2 className="heading-xl quote-text">
+              Fairness isn't a feature. <br/>
+              <span className="text-brand-red">It's our foundation.</span>
+            </h2>
+          </div>
+          <div className="about-content-box">
+            <p className="text-xl leading-relaxed">
+              We're rebuilding food delivery from the ground up. No predatory commissions. No hidden fees. Just direct connections between you and the local spots you love.
+            </p>
+            <div className="about-stats mt-8">
+              <div className="stat-item">
+                <span className="stat-value">0%</span>
+                <span className="stat-label">Commissions</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-value">100%</span>
+                <span className="stat-label">Transparency</span>
+              </div>
+            </div>
+            <p className="text-muted mt-6">
+              HIVAGO is more than an app—it's a community of restaurant owners, tech innovators, and food lovers committed to bringing fairness back to the ecosystem.
+            </p>
+          </div>
         </div>
       </div>
 
       <style>{`
-        .mission-content {
-          padding: 6rem 2rem;
-          background-color: var(--bg-secondary);
-          border-radius: 2rem;
+        .about-section-enhanced {
+          background-color: var(--bg-primary);
           position: relative;
-          max-width: 64rem;
-          margin: 0 auto;
+          overflow: hidden;
+        }
+
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: center;
+          padding: 4rem 0;
+        }
+
+        .about-visual {
+          position: relative;
         }
 
         .quote-mark {
           position: absolute;
-          top: -2rem;
-          left: 2rem;
+          top: -4rem;
+          left: -1rem;
           font-family: var(--font-serif);
-          font-size: 8rem;
-          color: transparent;
-          -webkit-text-stroke: 2px #fca5a5; /* faint red outline */
-          opacity: 0.5;
+          font-size: 10rem;
+          color: var(--brand-red);
+          opacity: 0.1;
           line-height: 1;
+          pointer-events: none;
         }
 
         .quote-text {
-          position: relative;
-          z-index: 10;
+          font-weight: 800;
+          line-height: 1.1;
         }
 
-        .max-w-2xl {
-          max-width: 42rem;
+        .about-content-box {
+          background: white;
+          padding: 3rem;
+          border-radius: 2rem;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+          border: 1px solid var(--border-color);
         }
 
-        .mx-auto {
-          margin-left: auto;
-          margin-right: auto;
+        .about-stats {
+          display: flex;
+          gap: 3rem;
+          border-top: 1px solid var(--border-color);
+          padding-top: 2rem;
         }
 
-        .mt-8 {
-          margin-top: 2rem;
+        .stat-item {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .stat-value {
+          font-size: 2.5rem;
+          font-weight: 800;
+          color: var(--brand-red);
+          line-height: 1;
+        }
+
+        .stat-label {
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: var(--text-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-top: 0.5rem;
+        }
+
+        @media (max-width: 992px) {
+          .about-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            text-align: center;
+          }
+          .about-stats {
+            justify-content: center;
+          }
+          .quote-mark {
+            left: 50%;
+            transform: translateX(-50%);
+          }
         }
       `}</style>
     </section>

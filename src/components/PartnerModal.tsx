@@ -59,7 +59,7 @@ const PartnerModal: React.FC<PartnerModalProps> = ({ isOpen, onClose }) => {
                 onChange={(e) => updateField('ownerName', e.target.value)}
               />
             </div>
-            <button className="btn-modal-next" onClick={handleNext}>Next</button>
+            <button className="btn-modal-next mt-4" onClick={handleNext}>Next</button>
           </div>
         );
       case 2:

@@ -23,11 +23,11 @@ const OnboardingProcess: React.FC = () => {
   return (
     <section className="section-padding bg-white">
       <div className="container">
-        <h2 className="heading-lg text-center mb-16" style={{ fontSize: '2.25rem' }}>
+        <h2 className="heading-lg text-center mb-8" style={{ fontSize: '2.25rem' }}>
           Simple onboarding, transparent process
         </h2>
 
-        <div className="process-list max-w-2xl mx-auto">
+        <div className="process-list max-w-2xl mx-auto" style={{ gap: '2rem' }}>
           {steps.map((step, idx) => (
             <div key={idx} className="process-step">
               <div className="process-number">{idx + 1}</div>

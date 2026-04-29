@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import hivagoLogo from '../assets/hivago_logo.svg';
 
 const Footer: React.FC = () => {
   return (
@@ -7,7 +8,9 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <span className="logo-text-footer">HIVAGO</span>
+            <Link to="/">
+              <img src={hivagoLogo} alt="HIVAGO" className="footer-logo-img" />
+            </Link>
             <p className="footer-desc mt-4 text-muted">
               A food delivery platform built for restaurants, not commissions.
             </p>
@@ -53,6 +56,14 @@ const Footer: React.FC = () => {
           font-weight: 800;
           letter-spacing: -0.025em;
           color: var(--text-main);
+        }
+
+        .footer-logo-img {
+          height: 3rem;
+          width: auto;
+          display: block;
+          /* Filter to turn any color SVG into brand red #d72b1f */
+          filter: brightness(0) invert(18%) sepia(88%) saturate(5437%) hue-rotate(354deg) brightness(90%) contrast(104%);
         }
 
         .footer-desc {

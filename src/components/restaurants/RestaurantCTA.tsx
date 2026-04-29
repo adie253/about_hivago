@@ -9,7 +9,7 @@ const RestaurantCTA: React.FC = () => {
           <h2 className="heading-xl mb-4 text-white">
             Ready to take back control?
           </h2>
-          <p className="text-lg mb-10 text-white-80 max-w-2xl mx-auto">
+          <p className="text-lg mb-8 text-white-80 max-w-2xl mx-auto">
             Join restaurants building sustainable delivery businesses with HIVAGO.
           </p>
           

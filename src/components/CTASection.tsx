@@ -10,7 +10,7 @@ const CTASection: React.FC = () => {
             Built for restaurant owners and operators
           </h2>
           
-          <p className="cta-subheading mb-10 max-w-3xl mx-auto">
+          <p className="cta-subheading mb-8 max-w-3xl mx-auto">
             Whether you run a single outlet or multiple locations, HIVAGO is
             designed to support <span className="font-bold">long-term, profitable delivery</span> — not short-term discount spikes.
           </p>

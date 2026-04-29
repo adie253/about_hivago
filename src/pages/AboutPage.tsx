@@ -10,7 +10,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className="about-page">
       <Navbar />
-      
+
       <header className="about-header">
         <div className="container">
           <h1 className="heading-xl mb-6">
@@ -21,6 +21,43 @@ const AboutPage: React.FC = () => {
           </p>
         </div>
       </header>
+
+
+      <section className="values-section section-padding bg-white">
+        <div className="container">
+          <h2 className="heading-lg text-center mb-12">Our Core <span style={{ color: 'var(--brand-red)' }}>Values</span></h2>
+          <div className="values-grid">
+            {[
+              {
+                icon: <Eye size={32} strokeWidth={1.5} />,
+                title: 'Radical Transparency',
+                desc: 'No hidden fees, no surprise service charges, and no silent menu markups. What you see is exactly what you pay.'
+              },
+              {
+                icon: <HeartHandshake size={32} strokeWidth={1.5} />,
+                title: 'Supporting Local',
+                desc: 'We don\'t squeeze restaurants for 30% margins. Your money goes directly to the people actually making your food.'
+              },
+              {
+                icon: <ShieldCheck size={32} strokeWidth={1.5} />,
+                title: 'Uncompromised Quality',
+                desc: 'Because restaurants aren\'t losing money to massive commissions, they can focus on delivering the highest quality ingredients to you.'
+              },
+              {
+                icon: <HandCoins size={32} strokeWidth={1.5} />,
+                title: 'Fairness for All',
+                desc: 'We are building a delivery network that works for everyone—you get a fair price, restaurants get a fair margin, and drivers get a fair wage.'
+              }
+            ].map((value, i) => (
+              <div key={i} className="value-card">
+                <div className="value-icon">{value.icon}</div>
+                <h4 className="value-title">{value.title}</h4>
+                <p className="value-desc">{value.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="about-content section-padding bg-bg-secondary">
         <div className="container">
@@ -39,52 +76,16 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="values-section section-padding bg-white">
-        <div className="container">
-          <h2 className="heading-lg text-center mb-12">Our Core <span style={{ color: 'var(--brand-red)' }}>Values</span></h2>
-          <div className="values-grid">
-            {[
-              { 
-                icon: <Eye size={32} strokeWidth={1.5} />, 
-                title: 'Radical Transparency', 
-                desc: 'No hidden fees, no surprise service charges, and no silent menu markups. What you see is exactly what you pay.' 
-              },
-              { 
-                icon: <HeartHandshake size={32} strokeWidth={1.5} />, 
-                title: 'Supporting Local', 
-                desc: 'We don\'t squeeze restaurants for 30% margins. Your money goes directly to the people actually making your food.' 
-              },
-              { 
-                icon: <ShieldCheck size={32} strokeWidth={1.5} />, 
-                title: 'Uncompromised Quality', 
-                desc: 'Because restaurants aren\'t losing money to massive commissions, they can focus on delivering the highest quality ingredients to you.' 
-              },
-              { 
-                icon: <HandCoins size={32} strokeWidth={1.5} />, 
-                title: 'Fairness for All', 
-                desc: 'We are building a delivery network that works for everyone—you get a fair price, restaurants get a fair margin, and drivers get a fair wage.' 
-              }
-            ].map((value, i) => (
-              <div key={i} className="value-card">
-                <div className="value-icon">{value.icon}</div>
-                <h4 className="value-title">{value.title}</h4>
-                <p className="value-desc">{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="customer-benefits section-padding bg-bg-secondary">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-4">Why order on HIVAGO?</h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">
+            <p className="text-lg text-muted max-w-2xl mx-auto mb-8">
               We've redesigned the delivery experience from the ground up to prioritize you and the food you love.
             </p>
           </div>
 
-          <div className="benefits-grid">
+          <div className="benefits-grid mt-4">
             <div className="benefit-item">
               <div className="benefit-icon-sm"><Zap size={24} /></div>
               <h3>Honest Pricing</h3>
@@ -108,7 +109,7 @@ const AboutPage: React.FC = () => {
         <div className="container text-center">
           <div className="cta-box mx-auto">
             <h2 className="heading-lg mb-6">Ready to join the movement?</h2>
-            <p className="text-lg text-muted mb-10 max-w-xl mx-auto">
+            <p className="text-lg text-muted mb-8 max-w-xl mx-auto">
               Be among the first to experience a fairer way to enjoy your favorite local food. Join the waitlist and we'll notify you when we launch in your city.
             </p>
             <button className="btn-primary btn-large" onClick={() => setIsWaitlistOpen(true)}>
@@ -120,9 +121,9 @@ const AboutPage: React.FC = () => {
 
       <Footer />
 
-      <WaitlistModal 
-        isOpen={isWaitlistOpen} 
-        onClose={() => setIsWaitlistOpen(false)} 
+      <WaitlistModal
+        isOpen={isWaitlistOpen}
+        onClose={() => setIsWaitlistOpen(false)}
       />
 
       <style>{`

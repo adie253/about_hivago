@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PartnerModal from './PartnerModal';
+import hivagoLogo from '../assets/hivago_logo.svg';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,7 +43,7 @@ const Navbar: React.FC = () => {
       <div className="container nav-content">
         <div className="logo">
           <Link to="/">
-            <span className="logo-text">HIVAGO</span>
+            <img src={hivagoLogo} alt="HIVAGO" className="nav-logo-img" />
           </Link>
         </div>
 
@@ -93,6 +94,14 @@ const Navbar: React.FC = () => {
         .navbar.scrolled {
           border-bottom-color: var(--border-color);
           box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo-img {
+          height: 2.5rem;
+          width: auto;
+          display: block;
+          /* Filter to turn any color SVG into brand red #d72b1f */
+          filter: brightness(0) invert(18%) sepia(88%) saturate(5437%) hue-rotate(354deg) brightness(90%) contrast(104%);
         }
 
         .nav-content {

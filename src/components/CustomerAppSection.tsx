@@ -12,11 +12,10 @@ const CustomerAppSection: React.FC = () => {
             HIVAGO connects you directly with the restaurants you love. Say goodbye to excessive delivery fees and hidden charges.
           </p>
           <button className="btn-outline-red btn-large mb-4">
-            Download the App
+            Join the customer waitlist
           </button>
           <p className="text-sm text-light">
-            Available soon on iOS and Android.
-          </p>
+            We'll notify you when HIVAGO launches in your city.          </p>
         </div>
       </div>
 
