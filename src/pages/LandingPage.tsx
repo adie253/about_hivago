@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Features from '../components/Features';
+import Comparison from '../components/Comparison';
+import ResultChart from '../components/ResultChart';
+import HowItWorks from '../components/HowItWorks';
 import AboutSection from '../components/AboutSection';
+import CTASection from '../components/CTASection';
+import CustomerAppSection from '../components/CustomerAppSection';
 import Contact from '../components/Contact';
-import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
 import Skeleton from '../components/Skeleton';
 
@@ -48,7 +52,7 @@ const LandingPage: React.FC = () => {
           .skeleton-loading-state {
             padding-top: 2rem;
             min-height: 100vh;
-            background: var(--slate-50);
+            background: var(--bg-secondary);
           }
           .skeleton-nav {
             display: flex;
@@ -66,8 +70,6 @@ const LandingPage: React.FC = () => {
             gap: 5rem;
             align-items: center;
           }
-          .mb-4 { margin-bottom: 1rem; }
-          .mb-8 { margin-bottom: 2rem; }
         `}</style>
       </div>
     );
@@ -78,9 +80,12 @@ const LandingPage: React.FC = () => {
       <Navbar />
       <Hero />
       <Features />
+      <Comparison />
+      <ResultChart />
+      <HowItWorks />
+      <CTASection />
+      <CustomerAppSection />
       <AboutSection />
-      {/* <Pricing /> */}
-      <FAQ />
       <Contact />
       <Footer />
     </div>

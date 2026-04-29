@@ -1,162 +1,80 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, MessageCircle, MapPin } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
-    <section id="contact" className="contact">
+    <section className="section-padding bg-bg-secondary" id="contact">
       <div className="container">
-        <div className="contact-grid">
-          <div className="contact-info">
-            <motion.h2
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              Get in <span className="text-gradient">Touch</span>
-            </motion.h2>
-            <p>Ready to revolutionize your restaurant? Our team is here to help you get started.</p>
-            
-            <div className="info-items">
-              <div className="info-item">
-                <div className="info-icon"><Mail size={20} /></div>
-                <div>
-                  <h4>Email Us</h4>
-                  <p>hello@hivago.com</p>
-                </div>
-              </div>
-              <div className="info-item">
-                <div className="info-icon"><Phone size={20} /></div>
-                <div>
-                  <h4>Call Us</h4>
-                  <p>+91 98765 43210</p>
-                </div>
-              </div>
-              <div className="info-item">
-                <div className="info-icon"><MapPin size={20} /></div>
-                <div>
-                  <h4>Visit Us</h4>
-                  <p>123 Tech Park, HSR Layout, Bengaluru, India</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="text-center mb-12">
+          <h2 className="heading-lg mb-4" style={{ fontSize: '2.25rem' }}>Talk to us</h2>
+          <p className="text-lg text-muted max-w-2xl mx-auto">
+            Have questions? We'd love to hear from you. Reach out to our team.
+          </p>
+        </div>
 
-          <motion.div 
-            className="contact-form-container glass"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <form className="contact-form">
-              <div className="form-group">
-                <label>Full Name</label>
-                <input type="text" placeholder="John Doe" />
-              </div>
-              <div className="form-group">
-                <label>Email Address</label>
-                <input type="email" placeholder="john@example.com" />
-              </div>
-              <div className="form-group">
-                <label>Message</label>
-                <textarea placeholder="Tell us about your restaurant..."></textarea>
-              </div>
-              <button type="submit" className="btn btn-primary w-full">
-                Send Message <Send size={18} />
-              </button>
-            </form>
-          </motion.div>
+        <div className="grid-3" id="partner">
+          {/* Email Card */}
+          <a href="mailto:partner@hivago.in" className="contact-card">
+            <div className="contact-icon mb-4" style={{ color: 'var(--brand-red)', backgroundColor: '#fee2e2' }}>
+              <Mail size={24} />
+            </div>
+            <h3 className="font-bold text-xl mb-2">Email Us</h3>
+            <p className="text-muted mb-4">For general inquiries and support.</p>
+            <span className="contact-link" style={{ color: 'var(--brand-red)' }}>partner@hivago.in</span>
+          </a>
+
+          {/* WhatsApp Card */}
+          <a href="https://wa.me/917506186080" className="contact-card">
+            <div className="contact-icon mb-4" style={{ color: '#16a34a', backgroundColor: '#dcfce7' }}>
+              <MessageCircle size={24} />
+            </div>
+            <h3 className="font-bold text-xl mb-2">WhatsApp</h3>
+            <p className="text-muted mb-4">Chat directly with our onboarding team.</p>
+            <span className="contact-link" style={{ color: '#16a34a' }}>Message Us</span>
+          </a>
+
+          {/* Location Card */}
+          <div className="contact-card">
+            <div className="contact-icon mb-4" style={{ color: '#4b5563', backgroundColor: '#f3f4f6' }}>
+              <MapPin size={24} />
+            </div>
+            <h3 className="font-bold text-xl mb-2">Our Office</h3>
+            <p className="text-muted mb-4">Come visit us for an in-person chat.</p>
+            <span className="contact-link text-muted">Bengaluru, India</span>
+          </div>
         </div>
       </div>
 
       <style>{`
-        .contact {
-          padding: 100px 0;
-          background: white;
-        }
-        .contact-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.2fr;
-          gap: 5rem;
-          align-items: center;
-        }
-        .contact-info h2 {
-          font-size: 3rem;
-          margin-bottom: 1.5rem;
-        }
-        .contact-info p {
-          color: var(--slate-600);
-          font-size: 1.1rem;
-          margin-bottom: 3rem;
-        }
-        .info-items {
+        .contact-card {
+          background-color: white;
+          padding: 2.5rem 2rem;
+          border-radius: 1rem;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+          text-align: center;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
           display: flex;
           flex-direction: column;
-          gap: 2rem;
+          align-items: center;
         }
-        .info-item {
-          display: flex;
-          gap: 1.25rem;
+
+        .contact-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .info-icon {
-          width: 48px;
-          height: 48px;
-          background: var(--brand-50);
-          color: var(--brand-500);
+
+        .contact-icon {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 12px;
         }
-        .info-item h4 {
-          margin-bottom: 0.25rem;
-        }
-        .info-item p {
-          margin-bottom: 0;
-          font-size: 0.95rem;
-        }
-        .contact-form-container {
-          padding: 3rem;
-          border-radius: 24px;
-        }
-        .contact-form {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-        .form-group {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-        .form-group label {
+
+        .contact-link {
           font-weight: 600;
-          font-size: 0.9rem;
-          color: var(--slate-700);
-        }
-        .form-group input, .form-group textarea {
-          padding: 0.8rem 1rem;
-          border-radius: 10px;
-          border: 1px solid var(--slate-200);
-          background: var(--slate-50);
-          font-family: inherit;
-          transition: all 0.3s ease;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-          border-color: var(--brand-500);
-          outline: none;
-          background: white;
-          box-shadow: 0 0 0 4px var(--brand-50);
-        }
-        .form-group textarea {
-          min-height: 120px;
-          resize: vertical;
-        }
-        @media (max-width: 1024px) {
-          .contact-grid { grid-template-columns: 1fr; }
-          .contact-info { text-align: center; }
-          .info-items { align-items: center; }
-          .info-item { text-align: left; }
+          margin-top: auto;
         }
       `}</style>
     </section>

@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logo from '../assets/hivago_logo.svg';
+import PartnerModal from './PartnerModal';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleOpenPartner = () => setIsPartnerModalOpen(true);
+    window.addEventListener('openPartnerModal', handleOpenPartner);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('openPartnerModal', handleOpenPartner);
+    };
   }, []);
 
   const handleNavClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     if (pathname !== '/') {
       navigate('/');
-      // Wait for navigation and then scroll
       setTimeout(() => {
         const element = document.querySelector(id);
         if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -35,30 +38,21 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? 'glass' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container nav-content">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="logo"
-        >
+        <div className="logo">
           <Link to="/">
-            <img src={logo} alt="Hivago Logo" className="logo-red" style={{ height: '45px', display: 'block' }} />
+            <span className="logo-text">HIVAGO</span>
           </Link>
-        </motion.div>
+        </div>
 
         <div className="nav-links desktop-only">
-          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/for-restaurants" className="nav-link">For Restaurants</Link>
           <Link to="/about" className="nav-link">About</Link>
-          <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="nav-link">Services</a>
           <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="nav-link">Contact</a>
-          <motion.button 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="btn btn-primary"
-          >
-            Partner with Us
-          </motion.button>
+          <button className="btn-primary" onClick={() => setIsPartnerModalOpen(true)}>
+            Partner with HIVAGO
+          </button>
         </div>
 
         <button 
@@ -71,51 +65,49 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <motion.div 
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          className="mobile-menu glass"
-        >
-          <Link to="/" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+        <div className="mobile-menu">
+          <Link to="/for-restaurants" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>For Restaurants</Link>
           <Link to="/about" className="mobile-link" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
-          <a href="#services" className="mobile-link" onClick={(e) => handleNavClick(e, '#services')}>Services</a>
           <a href="#contact" className="mobile-link" onClick={(e) => handleNavClick(e, '#contact')}>Contact</a>
-        </motion.div>
+          <button className="btn-primary mt-4" onClick={() => { setIsMobileMenuOpen(false); setIsPartnerModalOpen(true); }}>
+            Partner with HIVAGO
+          </button>
+        </div>
       )}
+
+      <PartnerModal 
+        isOpen={isPartnerModalOpen} 
+        onClose={() => setIsPartnerModalOpen(false)} 
+      />
 
       <style>{`
         .navbar {
-          position: fixed;
+          position: sticky;
           top: 0;
-          left: 0;
-          right: 0;
-          height: 80px;
-          z-index: 1000;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
+          z-index: 50;
+          background-color: var(--bg-primary);
+          transition: all 0.2s ease;
+          border-bottom: 1px solid transparent;
+        }
+        
+        .navbar.scrolled {
+          border-bottom-color: var(--border-color);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         }
 
         .nav-content {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          width: 100%;
+          height: 5rem; /* 80px */
         }
 
-        .logo {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-family: var(--font-heading);
-          font-size: 1.5rem;
+        .logo-text {
+          font-family: var(--font-serif);
+          font-size: 1.75rem;
           font-weight: 800;
-          color: var(--brand-500);
-        }
-
-        .logo-icon {
-          width: 28px;
-          height: 28px;
+          color: var(--text-main);
+          letter-spacing: -0.025em;
         }
 
         .nav-links {
@@ -125,71 +117,43 @@ const Navbar: React.FC = () => {
         }
 
         .nav-link {
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
           font-weight: 500;
-          color: var(--slate-600);
-          position: relative;
+          color: var(--text-main);
+          transition: color 0.2s ease;
         }
 
         .nav-link:hover {
-          color: var(--brand-500);
-        }
-
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: var(--brand-500);
-          transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-          width: 100%;
-        }
-
-        .btn {
-          padding: 0.6rem 1.5rem;
-          border-radius: 50px;
-          font-weight: 600;
-          transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-          background: var(--brand-500);
-          color: white;
-          box-shadow: 0 4px 15px rgba(215, 43, 31, 0.3);
-        }
-
-        .btn-primary:hover {
-          background: var(--brand-600);
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(215, 43, 31, 0.4);
+          color: var(--brand-red);
         }
 
         .mobile-toggle {
           display: none;
-          color: var(--slate-900);
+          color: var(--text-main);
         }
 
         .mobile-menu {
           position: absolute;
-          top: 80px;
+          top: 5rem;
           left: 0;
           right: 0;
+          background: var(--bg-primary);
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
-          gap: 1rem;
-          border-top: 1px solid var(--glass-border);
+          gap: 1.25rem;
+          border-bottom: 1px solid var(--border-color);
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
         .mobile-link {
           font-size: 1.1rem;
           font-weight: 500;
-          padding: 0.5rem 0;
+          color: var(--text-main);
         }
+
+        .mt-4 { margin-top: 1rem; }
 
         @media (max-width: 768px) {
           .desktop-only {

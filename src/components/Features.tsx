@@ -1,151 +1,104 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { LayoutDashboard, BarChart3, Clock, ShieldCheck, Zap, Users } from 'lucide-react';
-
-const features = [
-  {
-    icon: <LayoutDashboard size={28} />,
-    title: "Intuitive Dashboard",
-    description: "Manage everything from one place with a clean, modern interface designed for speed."
-  },
-  {
-    icon: <BarChart3 size={28} />,
-    title: "Advanced Analytics",
-    description: "Get deep insights into your sales, revenue, and customer behavior with real-time data."
-  },
-  {
-    icon: <Clock size={28} />,
-    title: "Live Order Tracking",
-    description: "Track orders from the moment they are placed until they are delivered to your customers."
-  },
-  {
-    icon: <ShieldCheck size={28} />,
-    title: "Secure Payouts",
-    description: "Experience hassle-free and secure payment processing with automated payout tracking."
-  },
-  {
-    icon: <Zap size={28} />,
-    title: "Automated Workflows",
-    description: "Reduce manual effort with automation for status transitions and notification systems."
-  },
-  {
-    icon: <Users size={28} />,
-    title: "Staff Management",
-    description: "Easily manage staff roles, permissions, and performance across all your outlets."
-  }
-];
+import { ShieldCheck, Percent, Users } from 'lucide-react';
 
 const Features: React.FC = () => {
-  return (
-    <section id="services" className="features">
-      <div className="container">
-        <div className="section-header">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Powerful Features for <span className="text-gradient">Growth</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
-            Everything you need to take your restaurant business to the next level.
-          </motion.p>
-        </div>
+  const features = [
+    {
+      icon: <ShieldCheck size={24} color="var(--brand-red)" strokeWidth={1.5} />,
+      title: 'Restaurants come first',
+      description: 'We believe the industry should be profitable for those who make the food. Our model is built for your success.'
+    },
+    {
+      icon: <Percent size={24} color="var(--brand-red)" strokeWidth={1.5} />,
+      title: 'Transparent commissions',
+      description: 'Stop giving away 30% of revenue. We offer a transparent model that lets you keep the lion\'s share.'
+    },
+    {
+      icon: <Users size={24} color="var(--brand-red)" strokeWidth={1.5} />,
+      title: 'Own customer relationships',
+      description: 'We don\'t hide customer data. Build direct relationships, offer tailored promos, and grow loyal regulars.'
+    }
+  ];
 
-        <div className="features-grid">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="feature-card"
-            >
-              <div className="feature-icon">{feature.icon}</div>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </motion.div>
-          ))}
+  return (
+    <section className="bg-bg-secondary" id="features">
+      {/* Block 1: Why HIVAGO exists */}
+      <div className="section-padding" style={{ paddingBottom: '3rem' }}>
+        <div className="container text-center">
+          <h2 className="heading-lg mb-6">Why HIVAGO exists</h2>
+          <p className="text-lg text-muted max-w-3xl mx-auto leading-relaxed">
+            The food delivery ecosystem is broken. Platforms take up to 30% of your revenue, leaving restaurants to struggle with margins while taking all the control. <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>We're here to change that.</span> We are building a more equitable, transparent platform where restaurants can actually thrive.
+          </p>
+        </div>
+      </div>
+
+      {/* Block 2: How HIVAGO is different */}
+      <div className="section-padding" style={{ paddingTop: '3rem' }}>
+        <div className="container">
+          <h2 className="heading-lg text-center mb-12" style={{ fontSize: '2.25rem' }}>How HIVAGO is different</h2>
+          
+          <div className="grid-3 mt-8">
+            {features.map((feature, index) => (
+              <div key={index} className="feature-card-white">
+                <div className="icon-circle mb-6">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-4">{feature.title}</h3>
+                <p className="text-muted leading-relaxed" style={{ fontSize: '0.95rem' }}>
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       <style>{`
-        .features {
-          padding: 100px 0;
+        .max-w-3xl {
+          max-width: 48rem;
+        }
+
+        .mx-auto {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .feature-card-white {
+          padding: 2.5rem 2rem;
           background: white;
-        }
-
-        .section-header {
-          text-align: center;
-          max-width: 700px;
-          margin: 0 auto 60px;
-        }
-
-        .section-header h2 {
-          font-size: 2.5rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .section-header p {
-          color: var(--slate-600);
-          font-size: 1.1rem;
-        }
-
-        .features-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2.5rem;
-        }
-
-        .feature-card {
-          padding: 2.5rem;
-          background: var(--slate-50);
-          border-radius: 20px;
+          border-radius: 1rem;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
           transition: all 0.3s ease;
-          border: 1px solid var(--slate-100);
-        }
-
-        .feature-card:hover {
-          background: white;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-          border-color: var(--brand-100);
-        }
-
-        .feature-icon {
-          width: 60px;
-          height: 60px;
-          background: var(--brand-50);
-          color: var(--brand-500);
           display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        .feature-card-white:hover {
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+          transform: translateY(-4px);
+        }
+
+        .icon-circle {
+          width: 3rem;
+          height: 3rem;
+          background-color: #fee2e2; /* Very faint red */
+          border-radius: 50%;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
-          border-radius: 16px;
-          margin-bottom: 1.5rem;
-          transition: all 0.3s ease;
         }
 
-        .feature-card:hover .feature-icon {
-          background: var(--brand-500);
-          color: white;
-          transform: rotate(10deg);
+        .text-xl {
+          font-size: 1.15rem;
+          font-family: var(--font-sans);
+          font-weight: 700;
+          color: var(--text-main);
         }
 
-        .feature-card h3 {
-          font-size: 1.25rem;
-          margin-bottom: 1rem;
-          color: var(--slate-900);
-        }
-
-        .feature-card p {
-          color: var(--slate-600);
-          line-height: 1.6;
+        .leading-relaxed {
+          line-height: 1.625;
         }
       `}</style>
     </section>
