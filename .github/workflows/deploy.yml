@@ -28,5 +28,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          local-dir: dist/
-          server-dir: ${{ github.ref == 'refs/heads/master' && 'public_html/' || 'public_html/staging/' }}
+
+          local-dir: ./dist/            # 🔥 VERY IMPORTANT
+          server-dir: public_html/      # correct location
+          dangerous-clean-slate: true   # wipes server before upload
