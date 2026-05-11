@@ -3,8 +3,8 @@ name: Deploy to Hostinger
 on:
   push:
     branches:
-      - main
-      - develop
+      - master
+      - dev
 
 jobs:
   build-deploy:
@@ -27,4 +27,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
-          server-dir: ${{ github.ref == 'refs/heads/main' && 'public_html/' || 'public_html/staging/' }}
+          server-dir: ${{ github.ref == 'refs/heads/master' && 'public_html/' || 'public_html/staging/' }}
