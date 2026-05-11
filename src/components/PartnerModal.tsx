@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ChevronDown, ChevronLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { X, ChevronLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Forms.css';
 

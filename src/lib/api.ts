@@ -18,8 +18,12 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 
 export class ApiError extends Error {
-  constructor(public status: number, public body: any) {
+  status: number;
+  body: any;
+  constructor(status: number, body: any) {
     super(body?.message ?? `HTTP ${status}`);
+    this.status = status;
+    this.body = body;
   }
   get fieldErrors(): Record<string, string> {
     const map: Record<string, string> = {};
