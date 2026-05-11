@@ -35,8 +35,8 @@ jobs:
           port: 21
 
           local-dir: ./dist/                     # build output
-          server-dir: ./domains/hivago.in/public_html/                        # ⚡ correct (maps to public_html)
-
+          server-dir: ../domains/hivago.in/public_html/
+                      
           dangerous-clean-slate: false           # ❌ don’t wipe server
           timeout: 60000
           retries: 3
