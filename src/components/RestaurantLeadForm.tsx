@@ -43,10 +43,10 @@ export function RestaurantLeadForm() {
       setStatus("success");
     } catch (err) {
       if (err instanceof ApiError) {
-        if (err.status === 400) setErrors(err.fieldErrors);
-        else if (err.status === 409) setErrorMsg("This number is already registered with us.");
-        else if (err.status === 429) setErrorMsg("Too many tries. Please wait a minute.");
-        else setErrorMsg("Something went wrong. Please try again.");
+        if (err.status === 400) {
+          setErrors(err.fieldErrors);
+        }
+        setErrorMsg(err.body?.message || "Something went wrong. Please try again.");
       } else {
         setErrorMsg("An unexpected error occurred.");
       }
