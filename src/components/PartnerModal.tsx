@@ -3,7 +3,7 @@ import { X, ChevronLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Forms.css';
 
-import { api } from '@/lib/api';
+import { api, ApiError } from '@/lib/api';
 
 interface PartnerModalProps {
   isOpen: boolean;
@@ -85,7 +85,8 @@ const PartnerModal: React.FC<PartnerModalProps> = ({ isOpen, onClose }) => {
       });
       setSuccess(true);
     } catch (err: any) {
-      setError(err.message || 'Something went wrong. Please try again.');
+      const msg = err instanceof ApiError ? err.body?.message : err.message;
+      setError(msg || 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
